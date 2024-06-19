@@ -21,12 +21,12 @@ const Header:FC = () => {
   };
 
   return (
-    <Form>
+    <Form onSubmit={onSubmit}>
     <Navbar className="bg-body-tertiary">
       <Container>
        <Navbar.Toggle aria-controls="basic-navbar-nav" />
        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav fill variant='underline' className="me-auto">
+          <Nav variant='underline' className="d-flex align-items-center">
             <Form.Control
              type="text"
              onChange={onSearchChange}
@@ -36,8 +36,8 @@ const Header:FC = () => {
              style ={{width: '300px'}}
             />
             <Button type="submit" >Добавить документ</Button>
-            <Button type="submit" >Выход</Button>
           </Nav>
+        <Button type="submit" className="ms-lg-auto">Выход</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

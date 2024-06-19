@@ -27,7 +27,7 @@ const Auth: FC = () => {
      <>
       <h1 className="text-center">Авторизация</h1>
       <Form onSubmit={onSubmit}>
-        <Form.Group className='mb-3'>
+        <Form.Group className='mb-3 m-auto' style={{width:'40%'}}>
             <Form.Label contolid="login">Логин</Form.Label>
             <Form.Control
              type="text"
@@ -38,7 +38,7 @@ const Auth: FC = () => {
             />
         </Form.Group>
 
-        <Form.Group className='mb-3'>
+        <Form.Group className='mb-3 m-auto' style={{width:'40%'}}>
             <Form.Label contolid="password">Пароль</Form.Label>
             <Form.Control
              
@@ -49,7 +49,7 @@ const Auth: FC = () => {
              name="password" id="password"
             />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button  variant="primary" type="submit">
             Войти
         </Button>
       </Form>

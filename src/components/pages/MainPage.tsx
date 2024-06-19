@@ -2,6 +2,9 @@ import React, {FC, useState, FormEvent, ChangeEvent} from 'react';
 import {Form, Button, Container} from 'react-bootstrap'
 import Header from '../Header';
 import Sidebar from '../Sidebar';
+import Auth from './Auth';
+import DocAdd from '../DocAdd';
+import UserAdd from '../UserAdd';
 
 const MainPage: FC = () => {
 
@@ -16,6 +19,7 @@ const MainPage: FC = () => {
         <Header></Header>
       </Form.Group>
         <Sidebar></Sidebar>
+        <UserAdd></UserAdd>
       </Form>
      </>  
     )
