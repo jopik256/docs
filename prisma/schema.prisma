@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id Int @id @default(autoincrement())
+  login String @unique
+  password String
+}
+
+model documents{
+  id Int @id @default(autoincrement())
+  name String
+  docFile Bytes
+  approval_date DateTime
+  signing_date DateTime
+  e_sign Bytes
+  description String
+  catalog documents_in_catalog[]
+  first_related_document related_document[] @relation("first")
+  second_related_document related_document[] @relation("second")
+}
+
+model catalogs{
+  id Int @id @default(autoincrement())
+  name String @unique
+  documents documents_in_catalog[]
+}
+
+model documents_in_catalog{
+  id Int @id @default(autoincrement())
+  catalog catalogs @relation(fields: [catalog_id], references: [id])
+  catalog_id Int
+  document documents @relation(fields: [document_id], references: [id])
+  document_id Int
+}
+
+model related_document{
+  id Int @id @default(autoincrement())
+  first_document documents @relation("first", fields: [first_document_id], references: [id])
+  first_document_id Int
+  second_document documents @relation("second", fields: [second_document_id], references: [id])
+  second_document_id Int
+}
