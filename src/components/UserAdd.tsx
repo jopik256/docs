@@ -24,7 +24,7 @@ const UserAdd:FC = () => {
     <Modal show={show} aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Добавление документа
+          Добавление польозователя
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="grid-example">

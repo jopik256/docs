@@ -20,6 +20,7 @@ const MainPage: FC = () => {
       </Form.Group>
         <Sidebar></Sidebar>
         <UserAdd></UserAdd>
+        <DocAdd></DocAdd>
       </Form>
      </>  
     )
