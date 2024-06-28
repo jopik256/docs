@@ -5,6 +5,9 @@ import Sidebar from '../Sidebar';
 import Auth from './Auth';
 import DocAdd from '../DocAdd';
 import UserAdd from '../UserAdd';
+import AccessRights from '../AccessRights';
+import Categories from '../Categories'
+import Documents from '../Documents';
 
 const MainPage: FC = () => {
 
@@ -19,9 +22,12 @@ const MainPage: FC = () => {
         <Header></Header>
       </Form.Group>
         <Sidebar></Sidebar>
-        <UserAdd></UserAdd>
+        {/* <UserAdd></UserAdd>
         <DocAdd></DocAdd>
+        <AccessRights></AccessRights>
+        <Categories></Categories> */}
       </Form>
+      <Documents></Documents>
      </>  
     )
 };
