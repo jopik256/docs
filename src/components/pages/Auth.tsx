@@ -10,8 +10,15 @@ const Auth: FC = () => {
 
     const onSubmit = (e: FormEvent) => {
         e.preventDefault();
+        if(isEmpty(login)||isEmpty(password)){
+            console.log("Поля не должны быть пустыми")
+        }
         navigate('');
     };
+
+    const isEmpty = (value: string): boolean => {
+        return !value || value.trim() === '';
+      }
 
     const onLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -58,3 +65,4 @@ const Auth: FC = () => {
 }
 
 export default Auth;
+

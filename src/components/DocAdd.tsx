@@ -1,6 +1,4 @@
 import React, {FC, useState, FormEvent, ChangeEvent} from 'react';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import {Button, Form, Modal, Col, Row, Container } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 
@@ -16,7 +14,7 @@ const DocAdd:FC = () => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // navigate('/auth');
+    navigate('');
   };
 
   return (
@@ -34,8 +32,6 @@ const DocAdd:FC = () => {
             <Form.Label contolid="docName">Название документа</Form.Label>
             <Form.Control
              type="text"
-            //  onChange={onLoginChange}
-            //  value={login}
              placeholder="Введите название документа"
              name="docName" id="docName"
             />
@@ -53,8 +49,6 @@ const DocAdd:FC = () => {
             <Form.Label contolid="approvalDate">Дата согласования</Form.Label>
             <Form.Control
              type="text"
-            //  onChange={onLoginChange}
-            //  value={login}
              placeholder="Введите дату согласования"
              name="approvalDate" id="approvalDate"
             />
@@ -64,8 +58,6 @@ const DocAdd:FC = () => {
             <Form.Label contolid="signingDate">Дата подписания</Form.Label>
             <Form.Control
              type="text"
-            //  onChange={onLoginChange}
-            //  value={login}
              placeholder="Введите дату подписания"
              name="signingDate" id="signingDate"
             />
@@ -84,8 +76,6 @@ const DocAdd:FC = () => {
             <Form.Label contolid="description">Описание</Form.Label>
             <Form.Control
              as="textarea"
-            //  onChange={onLoginChange}
-            //  value={login}
              placeholder="Введите описание документа"
              name="description" id="description"
             />
@@ -102,3 +92,4 @@ const DocAdd:FC = () => {
 }
 
 export default DocAdd;
+

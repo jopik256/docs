@@ -9,47 +9,74 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id Int @id @default(autoincrement())
-  login String @unique
-  password String
+model File {
+  id String @id @default(uuid())
+  path String
+
+  signedAt DateTime
+  uploadedAt DateTime
+  updatedAt DateTime
+
+  hashes FileHash[]
+  documents Document[]
 }
 
-model documents{
-  id Int @id @default(autoincrement())
+model FileHash {
+  id String @id @default(uuid())
+ 
+  file File @relation(fields: [fileId], references: [id])
+  fileId String
+
+  algorithm String
+  value String
+}
+
+model Document {
+  id String @id @default(uuid())
+
   name String
-  docFile Bytes
-  approval_date DateTime
-  signing_date DateTime
-  e_sign Bytes
   description String
-  catalog documents_in_catalog[]
-  first_related_document related_document[] @relation("first")
-  second_related_document related_document[] @relation("second")
+  type String
+
+  file File @relation(fields: [fileId], references: [id])
+  fileId String
+
+  bundle DocumentBundle? @relation(fields: [bundleId], references: [id])
+  bundleId String?
+
+  tree DocumentTree? @relation(fields: [treeId], references: [id])
+  treeId String?
 }
 
-model catalogs{
-  id Int @id @default(autoincrement())
-  name String @unique
-  documents documents_in_catalog[]
+model DocumentBundle {
+  id String @id @default(uuid())
+
+  name String
+  description String
+  type String
+
+  documents Document[]
+
+  tree DocumentTree? @relation(fields: [treeId], references: [id])
+  treeId String?
 }
 
-model documents_in_catalog{
-  id Int @id @default(autoincrement())
-  catalog catalogs @relation(fields: [catalog_id], references: [id])
-  catalog_id Int
-  document documents @relation(fields: [document_id], references: [id])
-  document_id Int
+model DocumentTree {
+  id String @id @default(uuid())
+
+  name String
+  content String?
+
+  children DocumentTree[] @relation("tree")
+
+  parent DocumentTree? @relation("tree", fields: [parentId], references: [id])
+  parentId String?
+
+  documents Document[]
+  bundles DocumentBundle[]
 }
 
-model related_document{
-  id Int @id @default(autoincrement())
-  first_document documents @relation("first", fields: [first_document_id], references: [id])
-  first_document_id Int
-  second_document documents @relation("second", fields: [second_document_id], references: [id])
-  second_document_id Int
-}
